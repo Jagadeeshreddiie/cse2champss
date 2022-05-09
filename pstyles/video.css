@@ -1,0 +1,54 @@
+
+.image{
+    margin-top:20px;
+    width:100%;
+    transition: box-shadow 0.5s;
+}
+.image:hover{
+    box-shadow:3px 3px 25px rgb(23, 198, 242);
+}
+.title{
+    font-family:calibri;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.author{
+    font-family:arial;
+    font-size:12px;
+    margin-top:20px;
+    margin-bottom:0px;
+}
+.stats{
+    margin-top:5px;
+    font-size:11.5px;
+    font-family:arial;
+}
+.main-div{
+    margin-left: 10px;
+    width:300px;
+    display: inline-block;
+    vertical-align:top;
+}
+.video-info-grid{
+    display:grid;
+    
+    grid-template-columns: 50px 1fr;
+
+}
+.profile{
+    width:40px;
+    border-radius: 40px;
+    background-color:gray; 
+
+}
+
+.video-grid{
+    display:grid;
+    width:100%;
+    grid-template-columns:1fr 1fr 1fr;
+    column-gap: 10px;
+    row-gap:10px;
+}

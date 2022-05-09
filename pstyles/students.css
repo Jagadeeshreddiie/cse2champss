@@ -1,0 +1,110 @@
+.head{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: center;
+    color:yellow;
+    
+    
+}
+.header{
+    display:flex;
+    margin-top:10px;
+    justify-content:center;
+    background-color:rgb(139, 250, 259);
+    border-radius: 25px;
+    padding: 1px;
+}
+.header1{
+    display:flex;
+    margin-top:30px;
+    flex-direction:row;
+    justify-content:right;
+    background-color:rgba(53, 57, 59, 0.599);
+    border-radius: 25px;
+    padding: 1px;
+}
+.header2{
+    background-color:rgb(33, 32, 32);
+    border-radius: 20px;
+    margin-top: 30px;
+    padding-bottom: 50px;
+}
+.para{
+    color:white;
+    border-radius: 25px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size:15px;
+    line-height:30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+.but{
+    border-radius:30px;
+    background-color:rgb(227, 253, 227);
+    border:solid ;
+    font-size:20px;
+    padding: 10px;
+    margin: 10px;
+    text-align:center;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: background-color 1s,box-shadow .5s;
+}
+.but:hover{
+    background-color:rgb(7, 242, 250);
+    box-shadow: rgb(139, 250, 259) 1px 2px 30px;
+}
+.search{
+    margin:10px;
+    border:solid;
+    border-radius: 35px;
+    text-align:left;
+    padding-left: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 11px;
+    width: 250px;
+}
+.details{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    vertical-align: top;
+}
+.inner1{
+    background-color:rgb(44, 44, 44);
+    
+    border-radius: 25px;
+    margin:20px;
+    
+    width:40%;
+    color:white;
+    padding-left: 90px;
+    line-height: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: box-shadow 0.5s,background-color .5s,color .5s;
+}
+.inner1:hover{
+    background-color:rgb(12, 12, 12);
+    box-shadow:rgb(233, 244, 23) 1px 2px 100px;
+    color: white;
+}
+.inner2{
+    background-color:rgb(44, 44, 44);
+    padding: 10px;
+    border-radius: 25px;
+    margin:20px;
+    width: 40%;
+    color:white;
+    text-align: left;
+    padding-left: 90px;
+    line-height: 25px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    transition: box-shadow 0.5s,background-color .5s,color .5s;
+}
+.inner2:hover{
+    background-color:rgb(12, 12, 12);
+    box-shadow:rgb(233, 244, 23) 1px 2px 100px;
+    color: white;
+}
