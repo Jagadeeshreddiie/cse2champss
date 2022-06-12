@@ -1,0 +1,90 @@
+Experiment 10: Working with Cursors using PL/SQL
+---------------------------------------------------------------
+Develop programs using Cursors, parameters in a Cursor.
+
+What is Cursor?
+-------------------
+A cursor is a temporary work area created in the system memory when a SQL statement is executed. A cursor contains information on a select statement and the rows of data accessed by it.
+This temporary work area is used to store the data retrieved from the database, and manipulate this data. A cursor can hold more than one row, but can process only one row at a time. The set of rows the cursor holds is called the active set.
+
+There are two types of cursors in PL/SQL:
+A)  Implicit cursors
+------------------------
+These are created by default when DML statements like, INSERT, UPDATE, and DELETE statements are executed. They are also created when a SELECT statement that returns just one row is executed.
+Implicit cursor Attributes
+------------------------------
+1. SQL%FOUND
+The return value is TRUE, if the DML statements like INSERT, DELETE and UPDATE affect at least one row and if SELECT ….INTO statement return at least one row.
+	The return value is FALSE, if DML statements like INSERT, DELETE and UPDATE do not affect row and if SELECT….INTO statement do not return a row.
+
+2. SQL%NOTFOUND
+The return value is FALSE,  if DML statements like INSERT, DELETE and UPDATE at least one row and if SELECT ….INTO statement return at least one row.
+The return value is TRUE, if a DML statement like INSERT, DELETE and UPDATE do not affect even one row and if SELECT ….INTO statement does not return a row.
+
+3. %ROWCOUNT
+Return the number of rows affected by the DML operations INSERT, DELETE, UPDATE, SELECT
+
+
+Example program to demonstrate implicit cursors
+-----------------------------------------------------------
+Update EMP table and increase the salary of each employee by 500 and use the SQL%ROWCOUNT attribute to determine the number of rows affected.
+
+DECLARE  
+   total_rows number(2); 
+BEGIN 
+   UPDATE EMP SET sal = sal + 500; 
+   IF sql%notfound THEN 
+      dbms_output.put_line('no employees are selected for updation'); 
+   ELSIF sql%found THEN 
+      total_rows := sql%rowcount;
+      dbms_output.put_line( total_rows || ' employees are updated '); 
+   END IF;  
+END; 
+/
+OUTPUT
+14 employees are updated
+
+B) Explicit cursors
+------------------------
+They must be created when you are executing a SELECT statement that returns more than one row. Even though the cursor stores multiple records, only one record can be processed at a time, which is called as current row. When you fetch a row the current row position moves to next row.
+Explicit cursors are programmer-defined cursors for gaining more control over the context area. An explicit cursor should be defined in the declaration section of the PL/SQL Block. It is created on a SELECT Statement which returns more than one row.
+Syntax
+CURSOR cursor_name IS select_statement;
+
+Declaring the Cursor
+------------------------
+Declaring the cursor defines the cursor with a name and the associated SELECT statement. 
+For example - CURSOR c1 IS SELECT empno, ename, sal FROM emp; 
+
+Opening the Cursor
+------------------------
+Opening the cursor allocates the memory for the cursor and makes it ready for fetching the rows returned by the SQL statement into it. 
+For example, we will open the above defined cursor as follows -
+OPEN c1;
+
+Fetching the Cursor
+------------------------
+Fetching the cursor involves accessing one row at a time. 
+For example, we will fetch rows from the above-opened cursor as follows -
+FETCH c1 INTO c1_id, c1_name, c1_sal; 
+
+Closing the Cursor
+----------------------
+Closing the cursor means releasing the allocated memory. 
+For example, we will close the above-opened cursor as follows -
+CLOSE c1;
+
+Example program to demonstrate Explicit cursors
+DECLARE
+CURSOR RES IS SELECT *FROM EMPO3;
+R EMPO3%ROWTYPE;
+BEGIN
+OPEN RES;
+LOOP
+FETCH RES INTO R;
+EXIT WHEN RES%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE(R.ENO||R.ENAME);
+END LOOP;
+CLOSE RES;
+END;
+ /

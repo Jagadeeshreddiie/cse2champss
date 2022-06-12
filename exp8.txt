@@ -1,0 +1,113 @@
+Experiment 8: Working with PL/SQL Procedures
+-----------------------------------------------------------
+Develop programs using Procedures, passing Parameters IN and OUT of Procedures.
+
+Definition
+A Procedure is a subprogram unit that consists of a group of PL/SQL statements. Each procedure in Oracle has its own unique name by which it can be referred. 
+This subprogram unit is stored as a database object.
+ 	These subprograms do not return a value directly; mainly used to perform an action.
+
+Creating a Procedure
+-------------------------
+A procedure is created with the CREATE OR REPLACE PROCEDURE statement. 
+syntax:
+CREATE [OR REPLACE] PROCEDURE procedure_name 
+[(parameter_name [IN | OUT | IN OUT] type [, ...])] 
+{IS | AS} 
+BEGIN 
+  < procedure_body > 
+END procedure_name; 
+Where,
+--> procedure-name specifies the name of the procedure.
+->  [OR REPLACE] option allows the modification of an existing procedure.
+->  The optional parameter list contains name, mode and types of the parameters. IN represents the value that will be passed from -
+outside and OUT represents the parameter that will be used to return a value outside of the procedure.
+-> procedure-body contains the executable part.
+-> The AS keyword is used instead of the IS keyword for creating a standalone procedure.
+
+
+
+
+Example program-1
+CREATE OR REPLACE PROCEDURE greetings 
+AS 
+BEGIN 
+   dbms_output.put_line('Hello World!'); 
+END; 
+/
+OUTPUT
+Procedure created.
+
+Executing a Standalone Procedure
+A standalone procedure can be called in two ways:
+--> Using the EXECUTE keyword
+The above procedure named 'greetings' can be called with the EXECUTE keyword as -
+SQL>EXECUTE greetings;
+The above call will display -
+Hello World
+PL/SQL procedure successfully completed.
+--> Calling the name of the procedure from a PL/SQL block
+BEGIN 
+   greetings; 
+END; 
+/
+The above call will display -
+Hello World  
+PL/SQL procedure successfully completed. 
+
+Deleting a Standalone Procedure
+Syntax:	DROP PROCEDURE procedure-name; 
+Example: 	DROP PROCEDURE greetings;
+
+
+Example program-2 ----> IN and OUT example
+This program finds the minimum of two values. Here, the procedure takes two numbers using the IN mode and returns their minimum using the OUT parameters.
+
+DECLARE 
+   a number; 
+   b number; 
+   c number;
+PROCEDURE findMin(x IN number, y IN number, z OUT number) IS 
+BEGIN 
+   IF x < y THEN 
+      z:= x; 
+   ELSE 
+      z:= y; 
+   END IF; 
+END;   
+BEGIN 
+   a:= 23; 
+   b:= 45; 
+   findMin(a, b, c); 
+   dbms_output.put_line(' Minimum of (23, 45) : ' || c); 
+END; 
+/
+When the above code is executed at the SQL prompt, it produces the following result -
+
+Minimum of (23, 45) : 23  
+
+PL/SQL procedure successfully completed.
+
+
+
+
+Example program-3 IN OUT example
+This procedure computes the square of value of a passed value. This example shows how we can use the same parameter to accept a value and then return another result.
+
+DECLARE 
+   a number; 
+PROCEDURE squareNum(x IN OUT number) IS 
+BEGIN 
+  x := x * x; 
+END;  
+BEGIN 
+   a:= 23; 
+   squareNum(a); 
+   dbms_output.put_line(' Square of (23): ' || a); 
+END; 
+/
+When the above code is executed at the SQL prompt, it produces the following result -
+
+Square of (23): 529 
+
+PL/SQL procedure successfully completed.

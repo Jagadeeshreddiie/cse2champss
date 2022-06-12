@@ -1,0 +1,92 @@
+Experiment 9: Working with Functions using PL/SQL
+----------------------------------------------------------------
+Develop programs using stored Functions, invoke Functions in SQL statements and write complex Functions.
+
+Creating a Function
+-----------------------
+A standalone function is created using the CREATE FUNCTION statement. 
+syntax:
+CREATE [OR REPLACE] FUNCTION function_name 
+[(parameter_name [IN | OUT | IN OUT] type [, ...])] 
+RETURN return_datatype 
+{IS | AS} 
+BEGIN 
+   < function_body > 
+END [function_name];
+
+Where,
+->function-name specifies the name of the function.
+-> [OR REPLACE] option allows the modification of an existing function.
+-> The optional parameter list contains name, mode and types of the parameters. IN represents the value that will be passed from outside and OUT represents the parameter that will be used to return a value outside of the procedure.
+-> The function must contain a return statement.
+-> The RETURN clause specifies the data type you are going to return from the function.
+-> function-body contains the executable part.
+-> The AS keyword is used instead of the IS keyword for creating a standalone function.
+
+
+
+
+
+
+
+
+Example program -1
+The following example illustrates how to create and call a standalone function. This function returns the total number of employees in the EMP table.
+
+CREATE OR REPLACE FUNCTION totalEmployees 
+RETURN number IS 
+   total number(2) := 0; 
+BEGIN 
+   SELECT count(*) into total FROM emp; 
+   RETURN total; 
+END; 
+/ 
+When the above code is executed using the SQL prompt, it will produce the following result -
+Function created.
+
+Calling a Function
+To call a function, we simply need to pass the required parameters along with the function name and if the function returns a value, then we can store the returned value.
+DECLARE 
+   c number(2); 
+BEGIN 
+   c := totalEmployees(); 
+   dbms_output.put_line('Total no. of Employees: ' || c); 
+END; 
+/
+When the above code is executed at the SQL prompt, it produces the following result -
+Total no. of Employees: 14  
+
+PL/SQL procedure successfully completed.
+
+
+Example program -2 ---> Recursive functions
+DECLARE 
+   num number; 
+   factorial number;  
+   
+FUNCTION fact(x number) 
+RETURN number  
+IS 
+   k number; 
+BEGIN 
+   IF k=0 THEN 
+      k := 1; 
+   ELSE 
+      k:= x * fact(x-1); 
+   END IF; 
+RETURN k; 
+END;  
+
+BEGIN 
+   num:= 6; 
+   factorial := fact(num); 
+   dbms_output.put_line(' Factorial '|| num || ' is ' || factorial); 
+END; 
+/
+
+When the above code is executed at the SQL prompt, it produces the following result -
+
+Factorial 6 is 720 
+  
+PL/SQL procedure successfully completed.
+

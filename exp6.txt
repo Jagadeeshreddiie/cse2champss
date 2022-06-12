@@ -1,0 +1,36 @@
+1. Write a program to find the given number is even or odd number?
+DECLARE 
+A NUMBER(5):=&A;
+BEGIN 
+IF MOD(A,2)=0 THEN 
+DBMS_OUTPUT.PUT_LINE(A||' is a even number'); 
+ELSE 
+DBMS_OUTPUT.PUT_LINE(A||' is a odd number'); 
+END IF;
+END;
+
+2. Write a program to find the biggest among three numbers?
+DECLARE 
+A number(10):=&A; 
+B number(10):=&B; 
+C number(10):=&C;
+BEGIN
+IF(A>B) AND (A>C) THEN DBMS_OUTPUT.PUT_LINE(A||' is the biggest number');
+ELSE IF(B>C) THEN
+DBMS_OUTPUT.PUT_LINE(B||' is the biggest number');
+ELSE
+DBMS_OUTPUT.PUT_LINE(C||' is the biggestnumber');
+END IF;
+END IF;
+END;
+
+4. Program for printing first 10 natural numbers using FOR loop.
+
+DECLARE
+A number(10);
+BEGIN
+FOR A in 1..10
+LOOP
+DBMS_OUTPUT.PUT_LINE(A);
+END LOOP;
+END;
